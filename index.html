@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evan Zottl · Portfolio</title>
+  <meta name="description" content="Portfolio of Evan Zottl — Data Analysis, Power BI, SQL, and Web projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav">
+      <a class="logo" href="#">EZ</a>
+      <button id="themeToggle" aria-label="Toggle dark mode">☾</button>
+      <a class="cta" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-text">
+        <h1>Data analyst & builder</h1>
+        <p>I turn messy data into clear stories with <strong>Power BI</strong>, <strong>Excel</strong>, and <strong>SQL</strong>. I also design simple websites like this one.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="Evan_Zottl_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+          <a class="btn btn-ghost" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container about" id="about">
+      <h2>About</h2>
+      <p>BSBA in Computer Information Systems (Cybersecurity minor) from Appalachian State. Built a lightweight SIEM capstone, led marketing for PSE, and run the App State sports page <em>NeersUpdate</em>. I love turning data into decisions.</p>
+      <ul class="quick-facts">
+        <li>Power BI, DAX, SQL, Excel</li>
+        <li>Python (pandas), Tableau</li>
+        <li>HTML/CSS/JS basics</li>
+      </ul>
+    </section>
+
+    <section class="container projects" id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Sales Insights (Power BI)</h3>
+          <p>Interactive dashboard with cohort retention, top products, and regional trends.</p>
+          <a href="#" class="card-link">Open report →</a>
+        </article>
+        <article class="card">
+          <h3>Excel Automation (VBA/Python)</h3>
+          <p>Automated monthly reporting: cleanup, pivots, and formatted email export.</p>
+          <a href="#" class="card-link">View repo →</a>
+        </article>
+        <article class="card">
+          <h3>Sigma Nu Site</h3>
+          <p>Helped build a modern chapter site with events, forms, and gallery.</p>
+          <a href="#" class="card-link">See website →</a>
+        </article>
+        <article class="card">
+          <h3>NeersUpdate</h3>
+          <p>Content and graphics for App State sports community; growth strategies.</p>
+          <a href="#" class="card-link">Highlights →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="container contact" id="contact">
+      <h2>Contact</h2>
+      <p>Want to collaborate or hire me? Reach out below.</p>
+      <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
+        <label>
+          Your email
+          <input required type="email" name="email" placeholder="you@example.com" />
+        </label>
+        <label>
+          Message
+          <textarea required name="message" rows="4" placeholder="Say hi 👋"></textarea>
+        </label>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Evan Zottl</span>
+      <div class="links">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#home">Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
