@@ -20,4 +20,4 @@ If Pages is disabled on your account/org, enable it: Settings → Pages → Buil
 
 - Edit text in `index.html` (hero, about, projects).
 - Add your resume PDF as `Evan_Zottl_Resume.pdf` at repo root.
-- Update links for projects and social profiles.
+- Update links for projects and social profiles. 
