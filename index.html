@@ -14,11 +14,18 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
     <header class="hero">
-      <h1>Evan Zottl</h1>
+      <h1 class="hero-title">
+        <span class="hero-orbit-wrap">
+          Evan Zottl
+          <svg class="hero-orbit" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="88" class="orbit-path" />
+          </svg>
+        </span>
+      </h1>
       <p class="value">
         Data analyst building insight-driven dashboards and simple web tools.
       </p>
@@ -63,47 +70,87 @@
         </div>
       </section>
 
-      <section id="skills" class="skills reveal">
-        <div class="container">
-          <h2>Skills</h2>
-          <div class="skill-grid">
-            <span class="skill">SQL</span>
-            <span class="skill">Tableau</span>
-            <span class="skill">Power BI</span>
-            <span class="skill">Excel</span>
-            <span class="skill">HTML</span>
-            <span class="skill">CSS</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">Photoshop</span>
-            <span class="skill">After Effects</span>
-            <span class="skill">Figma</span>
-            <span class="skill">Git/GitHub</span>
-          </div>
-        </div>
-      </section>
-
       <section id="projects" class="projects reveal">
         <div class="container">
           <h2>Projects</h2>
         </div>
         <div class="carousel">
           <div class="carousel-track">
-            <article class="project-card">
-              <h3>Sales Insights</h3>
+            <a
+              class="project-card"
+              href="https://example.com/sales-insights"
+              target="_blank"
+              rel="noopener"
+            >
+              <h3>Sales Insights <span class="ext" aria-hidden="true">↗</span></h3>
               <p>
                 Interactive Power BI dashboard for cohort retention and product
                 trends.
               </p>
-            </article>
-            <article class="project-card">
-              <h3>Excel Automation</h3>
+            </a>
+            <a
+              class="project-card"
+              href="https://example.com/excel-automation"
+              target="_blank"
+              rel="noopener"
+            >
+              <h3>Excel Automation <span class="ext" aria-hidden="true">↗</span></h3>
               <p>Automated monthly reporting using VBA and Python.</p>
-            </article>
-            <article class="project-card">
-              <h3>Sigma Nu Site</h3>
+            </a>
+            <a
+              class="project-card"
+              href="https://example.com/sigma-nu"
+              target="_blank"
+              rel="noopener"
+            >
+              <h3>Sigma Nu Site <span class="ext" aria-hidden="true">↗</span></h3>
               <p>Modern chapter website with events and gallery.</p>
-            </article>
+            </a>
           </div>
+        </div>
+      </section>
+
+      <section id="skills" class="skills reveal">
+        <div class="container">
+          <h2>Skills</h2>
+          <div class="skill-grid">
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">Tableau</span>
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">Excel</span>
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Photoshop</span>
+            <span class="skill-pill">After Effects</span>
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Git/GitHub</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact reveal">
+        <div class="container">
+          <h2>Contact Me</h2>
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/your-id-here"
+            method="POST"
+          >
+            <!-- Replace with your real Formspree ID -->
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button class="btn" type="submit">Submit</button>
+            <p id="contact-status" class="form-msg" aria-live="polite"></p>
+          </form>
+          <noscript><p><a href="mailto:evan@example.com">Email me directly</a></p></noscript>
         </div>
       </section>
     </main>
@@ -112,8 +159,41 @@
       <span>© <span id="year"></span> Evan Zottl</span>
     </footer>
 
-    <script src="carousel.js" defer></script>
-    <script src="hoverEffects.js" defer></script>
-    <script src="scrollReveal.js" defer></script>
+    <script src="assets/js/heroNameOrbit.js" defer></script>
+    <script src="assets/js/carousel.js" defer></script>
+    <script src="assets/js/hoverEffects.js" defer></script>
+    <script src="assets/js/scrollReveal.js" defer></script>
+    <script defer>
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('contact-status');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        const data = new FormData(form);
+        const name = data.get('name').trim();
+        const email = data.get('email').trim();
+        const message = data.get('message').trim();
+        if (!name || !email || !message || !emailRegex.test(email)) {
+          status.textContent = 'Please fill out all fields correctly.';
+          return;
+        }
+        try {
+          const res = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { Accept: 'application/json' },
+          });
+          if (res.ok) {
+            status.textContent = 'Message sent!';
+            form.reset();
+          } else {
+            status.textContent = 'Oops! Something went wrong.';
+          }
+        } catch (err) {
+          status.textContent = 'Oops! Something went wrong.';
+        }
+      });
+    </script>
   </body>
 </html>
