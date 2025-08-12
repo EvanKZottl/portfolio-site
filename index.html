@@ -1,121 +1,119 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evan Zottl · Portfolio</title>
-  <meta name="description" content="Portfolio of Evan Zottl — Data Analysis, Power BI, SQL, and Web projects." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <nav class="container nav">
-      <a class="logo" href="#">EZ</a>
-      <a class="cta" href="#contact">Contact</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evan Zottl · Portfolio</title>
+    <meta
+      name="description"
+      content="Evan Zottl — data analyst crafting insight-driven dashboards and clean web experiences."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Evan Zottl</h1>
+      <p class="value">
+        Data analyst building insight-driven dashboards and simple web tools.
+      </p>
+      <div class="learn-more">
+        <a href="#links">Learn more about me <span class="arrow">→</span></a>
+      </div>
+      <div id="links" class="link-list">
+        <a class="btn" href="#projects">View Projects</a>
+        <a
+          class="btn"
+          href="Evan_Zottl_Resume.pdf"
+          target="_blank"
+          rel="noopener"
+          >Resume</a
+        >
+        <a
+          class="btn"
+          href="https://www.linkedin.com/in/evanzottl/"
+          target="_blank"
+          rel="noopener"
+          >LinkedIn</a
+        >
+        <a
+          class="btn"
+          href="https://github.com/EvanKZottl/"
+          target="_blank"
+          rel="noopener"
+          >GitHub</a
+        >
+      </div>
+    </header>
 
-  <main>
-    <section class="hero container" id="home">
-      <div class="hero-text">
-        <h1>Data analyst & builder</h1>
-        <p>I turn messy data into clear stories with <strong>Power BI</strong>, <strong>Excel</strong>, and <strong>SQL</strong>. I also design simple websites like this one.</p>
-        <div class="hero-actions">
-          <a class="btn btn-ghost" href="#projects">View Projects</a>
-          <a class="btn" href="Evan_Zottl_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-          <a class="btn" href="https://www.linkedin.com/in/evanzottl/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/EvanKZottl/" target="_blank" rel="noopener">GitHub</a>
+    <main>
+      <section id="about" class="about reveal">
+        <div class="container inner">
+          <h2>About Me</h2>
+          <p>
+            Hi, I'm Evan — I turn messy data into clear stories and craft
+            lightweight sites like this. Recently I graduated with a BSBA in
+            Computer Information Systems and a minor in Cybersecurity.
+          </p>
         </div>
-      </div>
-      <div class="hero-image">
-        <img src="assets/img/hero-placeholder.jpg" alt="Hero image placeholder" />
-      </div>
-    </section>
+      </section>
 
-    <section class="container about" id="about">
-      <h2>About</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>Hi! My name is Evan Zottl, and I just earned my Bachelor of Science in Business Administration with a major in Computer Information Systems and a minor in Cybersecurity from Appalachian State University. I love working with data, whether thats cleaning it up, organizing it, or turning it into insights that make sense. I also enjoy designing dashboards, graphics, and other creative projects. This website showcases my work in Power BI, Excel, and SQL. Outside of work, you can usually find me cooking or experimenting with new ideas in Photoshop.</p>
-          <ul class="quick-facts">
-            <li>Power BI, DAX, SQL, Excel</li>
-            <li>Python (pandas), Tableau</li>
-            <li>HTML/CSS/JS basics</li>
-          </ul>
+      <section id="skills" class="skills reveal">
+        <div class="container">
+          <h2>Skills</h2>
+          <div class="skill-grid">
+            <span class="skill">SQL</span>
+            <span class="skill">Tableau</span>
+            <span class="skill">Power BI</span>
+            <span class="skill">Excel</span>
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Photoshop</span>
+            <span class="skill">After Effects</span>
+            <span class="skill">Figma</span>
+            <span class="skill">Git/GitHub</span>
+          </div>
         </div>
-        <div class="about-image">
-          <img src="assets/img/about-placeholder.jpg" alt="About section image" />
+      </section>
+
+      <section id="projects" class="projects reveal">
+        <div class="container">
+          <h2>Projects</h2>
         </div>
-      </div>
-    </section>
+        <div class="carousel">
+          <div class="carousel-track">
+            <article class="project-card">
+              <h3>Sales Insights</h3>
+              <p>
+                Interactive Power BI dashboard for cohort retention and product
+                trends.
+              </p>
+            </article>
+            <article class="project-card">
+              <h3>Excel Automation</h3>
+              <p>Automated monthly reporting using VBA and Python.</p>
+            </article>
+            <article class="project-card">
+              <h3>Sigma Nu Site</h3>
+              <p>Modern chapter website with events and gallery.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    <section class="container projects" id="projects">
-      <h2>Projects</h2>
-      <div class="projects-carousel">
-        <article class="card">
-          <img src="assets/img/project-placeholder.jpg" alt="Project image" />
-          <h3>Sales Insights (Power BI)</h3>
-          <p>Interactive dashboard with cohort retention, top products, and regional trends.</p>
-          <a href="#" class="card-link">Open report →</a>
-        </article>
-        <article class="card">
-          <img src="assets/img/project-placeholder.jpg" alt="Project image" />
-          <h3>Excel Automation (VBA/Python)</h3>
-          <p>Automated monthly reporting: cleanup, pivots, and formatted email export.</p>
-          <a href="#" class="card-link">View repo →</a>
-        </article>
-        <article class="card">
-          <img src="assets/img/project-placeholder.jpg" alt="Project image" />
-          <h3>Sigma Nu Site</h3>
-          <p>Helped build a modern chapter site with events, forms, and gallery.</p>
-          <a href="#" class="card-link">See website →</a>
-        </article>
-        <article class="card">
-          <img src="assets/img/project-placeholder.jpg" alt="Project image" />
-          <h3>NeersUpdate</h3>
-          <p>Content and graphics for App State sports community; growth strategies.</p>
-          <a href="#" class="card-link">Highlights →</a>
-        </article>
-        <article class="card">
-          <img src="assets/img/project-placeholder.jpg" alt="Project image" />
-          <h3>Portfolio Website</h3>
-          <p>This responsive site built with HTML, CSS, and vanilla JS.</p>
-          <a href="#" class="card-link">Explore →</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="container contact" id="contact">
-      <h2>Contact</h2>
-      <p>Want to collaborate or hire me? Reach out below.</p>
-      <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
-        <label>
-          Your email
-          <input required type="email" name="email" placeholder="you@example.com" />
-        </label>
-        <label>
-          Message
-          <textarea required name="message" rows="4" placeholder="Say hi 👋"></textarea>
-        </label>
-        <button class="btn" type="submit">Send</button>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
+    <footer>
       <span>© <span id="year"></span> Evan Zottl</span>
-      <div class="links">
-        <a href="#">LinkedIn</a>
-        <a href="#">GitHub</a>
-        <a href="#home">Top ↑</a>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script src="assets/js/script.js"></script>
-</body>
+    <script src="carousel.js" defer></script>
+    <script src="hoverEffects.js" defer></script>
+    <script src="scrollReveal.js" defer></script>
+  </body>
 </html>
