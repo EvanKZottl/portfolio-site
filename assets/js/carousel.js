@@ -5,6 +5,8 @@
   const rightBtn = document.querySelector('#project-carousel .car-arrow.right');
   if (!viewport || !track) return;
 
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Fill with clones so width is plenty for seamless loop
   const originals = Array.from(track.children);
   function fillClones(){
@@ -17,7 +19,8 @@
   fillClones();
 
   let x = 0;                 // translateX
-  let base = 45;             // px/sec auto speed
+  const BASE = reduce ? 0 : 45; // px/sec auto speed
+  let base = BASE;
   let boost = 0;             // user speed delta (decays)
   let down = false, dragging = false;
   let lastX = 0, lastT = performance.now();
@@ -87,12 +90,12 @@
 
   // Pause base speed when hovering/focusing; dragging still overrides
   viewport.addEventListener('mouseenter', () => base = 0);
-  viewport.addEventListener('mouseleave', () => base = 45);
+  viewport.addEventListener('mouseleave', () => base = BASE);
   viewport.addEventListener('focusin', () => base = 0);
-  viewport.addEventListener('focusout', () => base = 45);
+  viewport.addEventListener('focusout', () => base = BASE);
 
   // Arrow buttons give a nudge
   const nudge = dir => { boost = dir * 500; setTimeout(()=> boost = 0, 180); };
-  leftBtn?.addEventListener('click', ()=> nudge(+1));   // scroll right
-  rightBtn?.addEventListener('click', ()=> nudge(-1));  // scroll left
+  leftBtn?.addEventListener('click', ()=> nudge(-1));   // view left
+  rightBtn?.addEventListener('click', ()=> nudge(+1));  // view right
 })();
