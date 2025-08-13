@@ -16,59 +16,77 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
-  <body>
-    <header class="hero">
-      <h1 class="hero-title">
-        <span class="hero-orbit-wrap">
-          Evan Zottl
-          <svg class="hero-orbit" viewBox="0 0 200 200" aria-hidden="true">
-            <circle cx="100" cy="100" r="88" class="orbit-path" />
-          </svg>
-        </span>
-      </h1>
-      <p class="value">
-        Data analyst building insight-driven dashboards and simple web tools.
-      </p>
-      <div class="learn-more">
-        <a href="#links">Learn more about me <span class="arrow">→</span></a>
-      </div>
-      <div id="links" class="link-list">
-        <a class="btn" href="#projects">View Projects</a>
-        <a
-          class="btn"
-          href="Evan_Zottl_Resume.pdf"
-          target="_blank"
-          rel="noopener"
-          >Resume</a
-        >
-        <a
-          class="btn"
-          href="https://www.linkedin.com/in/evanzottl/"
-          target="_blank"
-          rel="noopener"
-          >LinkedIn</a
-        >
-        <a
-          class="btn"
-          href="https://github.com/EvanKZottl/"
-          target="_blank"
-          rel="noopener"
-          >GitHub</a
-        >
-      </div>
-    </header>
+    <body>
+      <header class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title" id="site-title">Evan Zottl</h1>
+
+          <div class="hero-avatar-wrap size-sm">
+            <img
+              class="hero-avatar"
+              src="assets/img/headshot.webp"
+              alt="Portrait of Evan Zottl"
+              width="220" height="220" loading="eager" decoding="async"
+            />
+            <svg class="hero-orbit" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="88" class="orbit-path" />
+              <circle cx="188" cy="100" r="2.6" class="orbit-spark" />
+            </svg>
+          </div>
+
+          <p class="value">
+            Data analyst building insight-driven dashboards and simple web tools.
+          </p>
+          <div class="learn-more">
+            <a href="#links">Learn more about me <span class="arrow">→</span></a>
+          </div>
+          <div id="links" class="link-list">
+            <a class="btn" href="#projects">View Projects</a>
+            <a
+              class="btn"
+              href="Evan_Zottl_Resume.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+            <a
+              class="btn"
+              href="https://www.linkedin.com/in/evanzottl/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/EvanKZottl/"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+            <button id="jazz-toggle" class="jazz-btn" aria-pressed="false" aria-label="Play jazz">▶</button>
+          </div>
+          <audio id="bg-jazz" src="assets/audio/jazz.mp3" preload="none"></audio>
+        </div>
+      </header>
 
     <main>
-      <section id="about" class="about reveal">
-        <div class="container inner">
-          <h2>About Me</h2>
-          <p>
-            Hi, I'm Evan — I turn messy data into clear stories and craft
-            lightweight sites like this. Recently I graduated with a BSBA in
-            Computer Information Systems and a minor in Cybersecurity.
-          </p>
-        </div>
-      </section>
+        <section id="about" class="about reveal">
+          <div class="container inner">
+            <h2>About Me <span class="wave" role="img" aria-label="waving hand">👋</span></h2>
+            <p>
+              Hi, I'm Evan — I turn messy data into clear stories and craft
+              lightweight sites like this. Recently I graduated with a BSBA in
+              Computer Information Systems and a minor in Cybersecurity.
+            </p>
+          </div>
+        </section>
+
+        <section class="feature-photo" aria-label="Featured mountain photo">
+          <figure class="feature-photo-inner">
+            <img src="assets/img/mountain.webp" alt="Evan in the High Country" loading="lazy" decoding="async">
+            <figcaption>Rooted in the High Country—curious, calm, and always exploring.</figcaption>
+          </figure>
+        </section>
 
       <section id="projects" class="projects reveal">
         <div class="container">
@@ -159,10 +177,11 @@
       <span>© <span id="year"></span> Evan Zottl</span>
     </footer>
 
-    <script src="assets/js/heroNameOrbit.js" defer></script>
-    <script src="assets/js/carousel.js" defer></script>
-    <script src="assets/js/hoverEffects.js" defer></script>
-    <script src="assets/js/scrollReveal.js" defer></script>
+      <script src="assets/js/heroAvatarOrbit.js" defer></script>
+      <script src="assets/js/carousel.js" defer></script>
+      <script src="assets/js/jazzPlayer.js" defer></script>
+      <script src="assets/js/hoverEffects.js" defer></script>
+      <script src="assets/js/scrollReveal.js" defer></script>
     <script defer>
       const form = document.getElementById('contact-form');
       const status = document.getElementById('contact-status');
