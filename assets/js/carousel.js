@@ -10,9 +10,12 @@
   // Fill with clones so width is plenty for seamless loop
   const originals = Array.from(track.children);
   function fillClones(){
-    const needed = Math.ceil((viewport.clientWidth * 2.5) / track.scrollWidth);
-    for (let i = 0; i < needed; i++){
-      originals.forEach(el => track.appendChild(el.cloneNode(true)));
+    let i = 0;
+    const neededWidth = viewport.clientWidth * 2.5;
+    while (track.scrollWidth < neededWidth){
+      const clone = originals[i % originals.length].cloneNode(true);
+      track.appendChild(clone);
+      i++;
     }
     track.querySelectorAll('img,a').forEach(el => el.setAttribute('draggable','false'));
   }
@@ -48,7 +51,9 @@
     prev = t;
     const v = base + boost;
     x -= v * dt;
-    track.style.transform = `translate3d(${x}px,0,0)`;
+    const step = 1 / Math.max(1, window.devicePixelRatio);
+    const snapped = Math.round(x / step) * step;
+    track.style.transform = `translate3d(${snapped}px,0,0)`;
     recycle();
     if (!down) boost *= 0.9;      // decay when not dragging
     requestAnimationFrame(loop);
@@ -88,14 +93,8 @@
   track.addEventListener('pointerup', endDrag);
   track.addEventListener('pointercancel', endDrag);
 
-  // Pause base speed when hovering/focusing; dragging still overrides
-  viewport.addEventListener('mouseenter', () => base = 0);
-  viewport.addEventListener('mouseleave', () => base = BASE);
-  viewport.addEventListener('focusin', () => base = 0);
-  viewport.addEventListener('focusout', () => base = BASE);
-
   // Arrow buttons give a nudge
   const nudge = dir => { boost = dir * 500; setTimeout(()=> boost = 0, 180); };
-  leftBtn?.addEventListener('click', ()=> nudge(-1));   // view left
-  rightBtn?.addEventListener('click', ()=> nudge(+1));  // view right
+  leftBtn?.addEventListener('click', ()=> nudge(+1));   // view left
+  rightBtn?.addEventListener('click', ()=> nudge(-1));  // view right
 })();
