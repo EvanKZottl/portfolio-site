@@ -17,7 +17,21 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
     <body>
-      <header class="hero">
+      <header class="site-header" role="banner">
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#home" class="brand">EZ</a>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <button id="jazz-toggle" class="jazz-btn" aria-pressed="false" aria-label="Play jazz">▶</button>
+          <audio id="bg-jazz" src="assets/audio/jazz.mp3" preload="none"></audio>
+        </nav>
+      </header>
+
+      <section id="home" class="hero">
         <div class="hero-content">
           <h1 class="hero-title" id="site-title">Evan Zottl</h1>
 
@@ -28,51 +42,16 @@
               alt="Portrait of Evan Zottl"
               width="220" height="220" loading="eager" decoding="async"
             />
-            <svg class="hero-orbit" viewBox="0 0 200 200" aria-hidden="true">
-              <circle cx="100" cy="100" r="88" class="orbit-path" />
-              <circle cx="188" cy="100" r="2.6" class="orbit-spark" />
-            </svg>
           </div>
 
-          <p class="value">
-            Data analyst building insight-driven dashboards and simple web tools.
-          </p>
-          <div class="learn-more">
-            <a href="#links">Learn more about me <span class="arrow">→</span></a>
-          </div>
-          <div id="links" class="link-list">
-            <a class="btn" href="#projects">View Projects</a>
-            <a
-              class="btn"
-              href="Evan_Zottl_Resume.pdf"
-              target="_blank"
-              rel="noopener"
-              >Resume</a
-            >
-            <a
-              class="btn"
-              href="https://www.linkedin.com/in/evanzottl/"
-              target="_blank"
-              rel="noopener"
-              >LinkedIn</a
-            >
-            <a
-              class="btn"
-              href="https://github.com/EvanKZottl/"
-              target="_blank"
-              rel="noopener"
-              >GitHub</a
-            >
-            <button id="jazz-toggle" class="jazz-btn" aria-pressed="false" aria-label="Play jazz">▶</button>
-          </div>
-          <audio id="bg-jazz" src="assets/audio/jazz.mp3" preload="none"></audio>
+          <a class="hero-cta" href="#about">Learn more about me <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-      </header>
+      </section>
 
     <main>
         <section id="about" class="about reveal">
           <div class="container inner">
-            <h2>About Me <span class="wave" role="img" aria-label="waving hand">👋</span></h2>
+            <h2>About Me <span class="wave white" role="img" aria-label="waving hand">👋</span></h2>
             <p>
               Hi, I'm Evan — I turn messy data into clear stories and craft
               lightweight sites like this. Recently I graduated with a BSBA in
@@ -81,71 +60,74 @@
           </div>
         </section>
 
-        <section class="feature-photo" aria-label="Featured mountain photo">
-          <figure class="feature-photo-inner">
-            <img src="assets/img/mountain.webp" alt="Evan in the High Country" loading="lazy" decoding="async">
-            <figcaption>Rooted in the High Country—curious, calm, and always exploring.</figcaption>
-          </figure>
+        <section id="work-band" class="work-band" aria-label="Projects and skills">
+          <div class="work-band-inner">
+            <section id="projects" class="projects reveal">
+              <div class="container">
+                <h2>Projects</h2>
+              </div>
+              <div class="carousel">
+                <button class="car-arrow left" aria-label="Scroll left">←</button>
+
+                <div class="carousel-viewport">
+                  <div class="carousel-track">
+                    <a
+                      class="project-card"
+                      href="https://example.com/sales-insights"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <h3>Sales Insights <span class="ext" aria-hidden="true">↗</span></h3>
+                      <p>
+                        Interactive Power BI dashboard for cohort retention and product
+                        trends.
+                      </p>
+                    </a>
+                    <a
+                      class="project-card"
+                      href="https://example.com/excel-automation"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <h3>Excel Automation <span class="ext" aria-hidden="true">↗</span></h3>
+                      <p>Automated monthly reporting using VBA and Python.</p>
+                    </a>
+                    <a
+                      class="project-card"
+                      href="https://example.com/sigma-nu"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <h3>Sigma Nu Site <span class="ext" aria-hidden="true">↗</span></h3>
+                      <p>Modern chapter website with events and gallery.</p>
+                    </a>
+                  </div>
+                </div>
+
+                <button class="car-arrow right" aria-label="Scroll right">→</button>
+              </div>
+            </section>
+
+            <section id="skills" class="skills reveal">
+              <div class="container">
+                <h2>Skills</h2>
+                <div class="skill-grid">
+                  <span class="skill-pill">SQL</span>
+                  <span class="skill-pill">Tableau</span>
+                  <span class="skill-pill">Power BI</span>
+                  <span class="skill-pill">Excel</span>
+                  <span class="skill-pill">HTML</span>
+                  <span class="skill-pill">CSS</span>
+                  <span class="skill-pill">JavaScript</span>
+                  <span class="skill-pill">Photoshop</span>
+                  <span class="skill-pill">After Effects</span>
+                  <span class="skill-pill">Figma</span>
+                  <span class="skill-pill">Git/GitHub</span>
+                </div>
+              </div>
+            </section>
+          </div>
         </section>
-
-      <section id="projects" class="projects reveal">
-        <div class="container">
-          <h2>Projects</h2>
-        </div>
-        <div class="carousel">
-          <div class="carousel-track">
-            <a
-              class="project-card"
-              href="https://example.com/sales-insights"
-              target="_blank"
-              rel="noopener"
-            >
-              <h3>Sales Insights <span class="ext" aria-hidden="true">↗</span></h3>
-              <p>
-                Interactive Power BI dashboard for cohort retention and product
-                trends.
-              </p>
-            </a>
-            <a
-              class="project-card"
-              href="https://example.com/excel-automation"
-              target="_blank"
-              rel="noopener"
-            >
-              <h3>Excel Automation <span class="ext" aria-hidden="true">↗</span></h3>
-              <p>Automated monthly reporting using VBA and Python.</p>
-            </a>
-            <a
-              class="project-card"
-              href="https://example.com/sigma-nu"
-              target="_blank"
-              rel="noopener"
-            >
-              <h3>Sigma Nu Site <span class="ext" aria-hidden="true">↗</span></h3>
-              <p>Modern chapter website with events and gallery.</p>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" class="skills reveal">
-        <div class="container">
-          <h2>Skills</h2>
-          <div class="skill-grid">
-            <span class="skill-pill">SQL</span>
-            <span class="skill-pill">Tableau</span>
-            <span class="skill-pill">Power BI</span>
-            <span class="skill-pill">Excel</span>
-            <span class="skill-pill">HTML</span>
-            <span class="skill-pill">CSS</span>
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">Photoshop</span>
-            <span class="skill-pill">After Effects</span>
-            <span class="skill-pill">Figma</span>
-            <span class="skill-pill">Git/GitHub</span>
-          </div>
-        </div>
-      </section>
 
       <section id="contact" class="contact reveal">
         <div class="container">
@@ -177,7 +159,6 @@
       <span>© <span id="year"></span> Evan Zottl</span>
     </footer>
 
-      <script src="assets/js/heroAvatarOrbit.js" defer></script>
       <script src="assets/js/carousel.js" defer></script>
       <script src="assets/js/jazzPlayer.js" defer></script>
       <script src="assets/js/hoverEffects.js" defer></script>

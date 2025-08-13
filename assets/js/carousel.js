@@ -1,100 +1,119 @@
 (() => {
+  const viewport = document.querySelector('.carousel-viewport');
   const track = document.querySelector('.carousel-track');
-  if (!track) return;
+  const leftBtn = document.querySelector('.car-arrow.left');
+  const rightBtn = document.querySelector('.car-arrow.right');
+  if (!viewport || !track) return;
 
-  let x = 0;                       // current translateX
-  let auto = 40;                   // px/sec auto speed
-  let userBoost = 0;               // extra speed from drag
-  let isDown = false;
-  let isDragging = false;
-  let lastX = 0;
-  const THRESH = 6;                // px before we treat as drag
-  const MAX_BOOST = 240;           // clamp
-  const DAMP = 0.92;               // ease back to auto speed
+  // Duplicate slides to avoid gaps and enable seamless recycling
+  const MIN_FILL = 2.2; // track width >= 2.2 * viewport width
+  function fillClones(){
+    const vpw = viewport.getBoundingClientRect().width;
+    let tw = track.scrollWidth;
+    const originals = Array.from(track.children);
+    while (tw < vpw * MIN_FILL) {
+      originals.forEach(el => track.appendChild(el.cloneNode(true)));
+      tw = track.scrollWidth;
+    }
+    // disable dragging images
+    track.querySelectorAll('img,a').forEach(el => el.setAttribute('draggable','false'));
+  }
+  fillClones();
 
-  // helpful styles
-  track.style.willChange = 'transform';
-  track.querySelectorAll('img,a').forEach(el => el.setAttribute('draggable','false'));
+  let x = 0;                    // current translateX
+  let base = 40;                // px/sec auto speed
+  let boost = 0;                // user-added speed from drag
+  let down = false, dragging = false;
+  let lastX = 0, lastT = performance.now();
+  const THRESH = 5;             // px before we consider it a drag
+  const MAX = 900;              // max |speed| px/sec
 
-  function slides(){ return Array.from(track.children); }
-  function widthOf(el){ return el.getBoundingClientRect().width; }
-  function totalWidth(){ return slides().reduce((w,el)=>w+widthOf(el),0); }
+  function recycle(){
+    // Move first slide to end when fully off left; and vice versa on reverse
+    const slides = Array.from(track.children);
+    if (!slides.length) return;
 
-  function recycleForward(){
-    // if the first slide fully left of view, move it to end and adjust x
-    const first = slides()[0];
-    const fw = widthOf(first);
-    const trackLeft = track.getBoundingClientRect().left;
-    const firstRight = first.getBoundingClientRect().right;
-    if (firstRight < 0) {
+    const first = slides[0];
+    const last  = slides[slides.length - 1];
+
+    const firstRect = first.getBoundingClientRect();
+    const lastRect  = last.getBoundingClientRect();
+    const vpRect    = viewport.getBoundingClientRect();
+
+    if (firstRect.right < vpRect.left) {
+      x += firstRect.width + parseFloat(getComputedStyle(track).gap || 0);
       track.appendChild(first);
-      x += fw;
-    }
-  }
-  function recycleBackward(){
-    const last = slides().at(-1);
-    const lw = widthOf(last);
-    const trackLeft = track.getBoundingClientRect().left;
-    const lastLeft = last.getBoundingClientRect().left;
-    if (lastLeft > window.innerWidth) {
+    } else if (lastRect.left > vpRect.right) {
+      x -= lastRect.width + parseFloat(getComputedStyle(track).gap || 0);
       track.prepend(last);
-      x -= lw;
     }
   }
 
-  let prevTs = performance.now();
-  function tick(ts){
-    const dt = Math.min(0.05, (ts - prevTs) / 1000); // safety cap
-    prevTs = ts;
+  let prev = performance.now();
+  function loop(t){
+    const dt = Math.min(0.05, (t - prev) / 1000);
+    prev = t;
 
-    // velocity: base auto + user boost when dragging
-    const v = auto + userBoost;
-    x -= v * dt; // move left with positive speed
+    // total velocity
+    const v = base + boost;
+    x -= v * dt;
     track.style.transform = `translate3d(${x}px,0,0)`;
 
-    recycleForward();
-    recycleBackward();
+    recycle();
 
-    // ease user boost back toward 0 when not dragging
-    if (!isDown) userBoost *= DAMP;
+    // decay boost when not dragging
+    if (!down) boost *= 0.92;
 
-    requestAnimationFrame(tick);
+    requestAnimationFrame(loop);
   }
-  requestAnimationFrame(tick);
+  requestAnimationFrame(loop);
 
-  // Pointer events (only affect speed when button is DOWN)
+  // Pointer events: ONLY modify boost when button is down and movement happens
   track.addEventListener('pointerdown', (e) => {
-    isDown = true; isDragging = false; lastX = e.clientX;
+    down = true; dragging = false; lastX = e.clientX; lastT = performance.now();
     track.setPointerCapture(e.pointerId);
     track.classList.add('grabbing');
   });
 
   track.addEventListener('pointermove', (e) => {
-    if (!isDown) return; // ignore hover-only movement
+    if (!down) return;
+    const now = performance.now();
     const dx = e.clientX - lastX;
-    if (!isDragging && Math.abs(dx) > THRESH) isDragging = true;
+    const dt = Math.max(1, now - lastT);         // ms
+    if (!dragging && Math.abs(dx) > THRESH) dragging = true;
 
-    if (isDragging) {
-      lastX = e.clientX;
-      // map drag delta to speed boost; scale factor ~ 12
-      userBoost = Math.max(-MAX_BOOST, Math.min(MAX_BOOST, -dx * 12));
-      e.preventDefault(); // prevent text selection while dragging
+    if (dragging) {
+      // instantaneous velocity (px/ms) -> px/sec
+      const vel = (dx / dt) * 1000;
+      // nonlinear mapping: amplify with power curve but keep sign
+      const sign = Math.sign(vel);
+      const mag = Math.min(MAX, Math.pow(Math.abs(vel) * 220, 1.15));
+      boost = -sign * mag; // negative because positive moves left
+      lastX = e.clientX; lastT = now;
+      e.preventDefault();
     }
-  }, { passive: false });
+  }, { passive:false });
 
   function endDrag(e){
-    if (!isDown) return;
-    isDown = false;
+    if (!down) return;
+    down = false;
     track.releasePointerCapture?.(e.pointerId);
     track.classList.remove('grabbing');
-    // if it wasn't a real drag, let clicks on cards work normally (no cancel)
   }
   track.addEventListener('pointerup', endDrag);
   track.addEventListener('pointercancel', endDrag);
 
-  // Pause auto while hovering/focusing
-  track.addEventListener('mouseenter', () => auto = 0);
-  track.addEventListener('mouseleave', () => auto = 40);
-  track.addEventListener('focusin', () => auto = 0);
-  track.addEventListener('focusout', () => auto = 40);
+  // Pause base auto when hovering/focusing the carousel (but keep boost on drag)
+  viewport.addEventListener('mouseenter', () => base = 0);
+  viewport.addEventListener('mouseleave', () => base = 40);
+  viewport.addEventListener('focusin', () => base = 0);
+  viewport.addEventListener('focusout', () => base = 40);
+
+  // Arrow buttons give a momentary push
+  function nudge(dir){ // dir: -1 left, +1 right
+    boost = dir * 420; // quick push that decays
+    setTimeout(()=> boost = 0, 180);
+  }
+  leftBtn?.addEventListener('click', ()=> nudge(+1));  // move right
+  rightBtn?.addEventListener('click', ()=> nudge(-1)); // move left
 })();
