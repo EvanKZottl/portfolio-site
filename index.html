@@ -26,8 +26,6 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <button id="jazz-toggle" class="jazz-btn" aria-pressed="false" aria-label="Play jazz">▶</button>
-          <audio id="bg-jazz" src="assets/audio/jazz.mp3" preload="none"></audio>
         </nav>
       </header>
 
@@ -45,6 +43,11 @@
           </div>
 
           <a class="hero-cta" href="#about">Learn more about me <span class="arrow" aria-hidden="true">→</span></a>
+          <div class="hero-buttons">
+            <a class="btn" href="https://linkedin.com/in/evanzottl" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="Evan_Zottl_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+            <a class="btn" href="https://github.com/evanzottl" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </div>
       </section>
 
@@ -60,17 +63,15 @@
           </div>
         </section>
 
-        <section id="work-band" class="work-band" aria-label="Projects and skills">
-          <div class="work-band-inner">
-            <section id="projects" class="projects reveal">
-              <div class="container">
-                <h2>Projects</h2>
-              </div>
-              <div class="carousel" id="project-carousel">
-                <button class="car-arrow left" aria-label="Scroll left">←</button>
+        <section id="projects" class="projects reveal">
+          <div class="container">
+            <h2>Projects</h2>
+          </div>
+          <div class="carousel" id="project-carousel">
+            <button class="car-arrow left" aria-label="Scroll left">←</button>
 
-                <div class="carousel-viewport">
-                  <div class="carousel-track">
+            <div class="carousel-viewport">
+              <div class="carousel-track">
                     <a
                       class="project-card"
                       href="https://example.com/sales-insights"
@@ -106,26 +107,24 @@
 
                 <button class="car-arrow right" aria-label="Scroll right">→</button>
               </div>
-            </section>
+        </section>
 
-            <section id="skills" class="skills reveal">
-              <div class="container">
-                <h2>Skills</h2>
-                <div class="skill-grid">
-                  <span class="skill-pill">SQL</span>
-                  <span class="skill-pill">Tableau</span>
-                  <span class="skill-pill">Power BI</span>
-                  <span class="skill-pill">Excel</span>
-                  <span class="skill-pill">HTML</span>
-                  <span class="skill-pill">CSS</span>
-                  <span class="skill-pill">JavaScript</span>
-                  <span class="skill-pill">Photoshop</span>
-                  <span class="skill-pill">After Effects</span>
-                  <span class="skill-pill">Figma</span>
-                  <span class="skill-pill">Git/GitHub</span>
-                </div>
-              </div>
-            </section>
+        <section id="skills" class="skills reveal">
+          <div class="container">
+            <h2>Skills</h2>
+            <div class="skill-grid">
+              <span class="skill-pill">SQL</span>
+              <span class="skill-pill">Tableau</span>
+              <span class="skill-pill">Power BI</span>
+              <span class="skill-pill">Excel</span>
+              <span class="skill-pill">HTML</span>
+              <span class="skill-pill">CSS</span>
+              <span class="skill-pill">JavaScript</span>
+              <span class="skill-pill">Photoshop</span>
+              <span class="skill-pill">After Effects</span>
+              <span class="skill-pill">Figma</span>
+              <span class="skill-pill">Git/GitHub</span>
+            </div>
           </div>
         </section>
 
@@ -160,7 +159,7 @@
     </footer>
 
       <script src="assets/js/carousel.js" defer></script>
-      <script src="assets/js/jazzPlayer.js" defer></script>
+      <script src="assets/js/heroPattern.js" defer></script>
       <script src="assets/js/hoverEffects.js" defer></script>
       <script src="assets/js/scrollReveal.js" defer></script>
     <script defer>
