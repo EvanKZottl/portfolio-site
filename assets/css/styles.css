@@ -248,16 +248,8 @@ section{ scroll-margin-top: 72px; }
 /* Projects carousel */
 .carousel{ position: relative; }
 .carousel-viewport{ overflow: hidden; }
-.carousel-track{ display: flex; gap: 16px; cursor: grab; user-select:none; will-change: transform; }
+.carousel-track{ display: flex; gap: 16px; cursor: grab; user-select:none; }
 .carousel-track.grabbing{ cursor: grabbing; }
-.car-arrow{
-  position:absolute; top:50%; transform: translateY(-50%); z-index:2;
-  width:38px; height:38px; border-radius:50%;
-  background: rgba(0,0,0,.45); color:#eaeaea; border:1px solid rgba(255,255,255,.1);
-  display:grid; place-items:center;
-}
-.car-arrow.left{ left: -8px; } .car-arrow.right{ right: -8px; }
-.car-arrow:hover{ background: rgba(0,0,0,.6); }
 
 .project-card {
   flex: 0 0 var(--card-w, clamp(260px, 32vw, 340px));

@@ -18,7 +18,7 @@ if (hero) {
     const w = canvas.width;
     const h = canvas.height;
     ctx.clearRect(0, 0, w, h);
-    ctx.strokeStyle = 'rgba(31,111,74,0.4)';
+    ctx.strokeStyle = 'rgba(31,111,74,0.35)';
     ctx.lineWidth = 1;
     const grid = 40;
     for (let x = (-offset % grid); x < w; x += grid) {
@@ -35,7 +35,7 @@ if (hero) {
     }
   }
   function loop() {
-    offset += 0.3;
+    offset += 0.2;
     draw();
     requestAnimationFrame(loop);
   }
