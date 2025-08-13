@@ -44,16 +44,18 @@ img {
   margin-inline: auto;
 }
 
-/* Fixed header */
+/* ===== Fixed Header ===== */
 .site-header{
-  position: fixed; top:0; left:0; right:0; z-index: 50;
+  position:fixed; top:0; left:0; right:0; z-index:50;
   backdrop-filter: blur(10px);
-  background: color-mix(in oklab, black 55%, transparent);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: rgba(0,0,0,.55);
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 .site-nav{
-  max-width: min(1200px, 92vw); margin: 0 auto;
-  display: flex; align-items: center; gap: 1rem; padding: .6rem .4rem;
+  max-width: min(1200px, 92vw);
+  margin: 0 auto;
+  display:flex; align-items:center; gap:1rem;
+  padding:.6rem .4rem;
 }
 .brand{ font-weight: 800; letter-spacing: .5px; text-decoration: none; color: #eaeaea; }
 .nav-links{ list-style: none; display:flex; gap: .9rem; margin:0; padding:0; }
@@ -68,6 +70,10 @@ img {
 }
 .jazz-btn:hover{ transform: translateY(-1px); box-shadow:0 6px 16px rgba(0,0,0,.3); }
 
+/* push content below header, and make anchor-jumps not hide under it */
+.hero{ padding-top: 64px; }
+section{ scroll-margin-top: 72px; }
+
 /* Hero */
   .hero {
     min-height: 100vh;
@@ -80,7 +86,6 @@ img {
         transparent 70%
       )
       var(--bg);
-    padding-top: 64px;
   }
   .hero-content {
     display: grid;
@@ -92,7 +97,7 @@ img {
     margin: 0;
   }
   /* Headshot (no orbit) + hover */
-  .hero-avatar-wrap{ position:relative; aspect-ratio:1; margin:.5rem auto .75rem; width: clamp(120px, 16vw, 200px); }
+  .hero-avatar-wrap{ position:relative; width: clamp(120px, 16vw, 200px); aspect-ratio: 1; margin:.5rem auto .75rem; }
 
   .hero-avatar{
     width:100%; height:100%; object-fit:cover; object-position:50% 50%; border-radius:50%;
@@ -143,6 +148,7 @@ img {
   position: relative;
   overflow: hidden;
   transition: transform 0.2s ease;
+}
 .btn:active {
   transform: scale(0.98);
 }
@@ -200,19 +206,18 @@ img {
   position: relative;
   margin: clamp(28px, 6vw, 80px) 0;
   background-image: url("assets/img/mountain.webp");
-  background-size: cover; background-position: center 60%;
+  background-size: cover;
+  background-position: center 60%;
   isolation: isolate;
 }
 .work-band::before{
-  /* dark overlay for readability */
   content:""; position:absolute; inset:0; z-index:0;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.70)),
-    radial-gradient(70% 120% at 70% 10%, rgba(31,111,74,.25), transparent 60%);
+  background: linear-gradient(to bottom, rgba(0,0,0,.70), rgba(0,0,0,.72));
 }
 .work-band-inner{
   position: relative; z-index:1;
-  max-width: min(1200px, 92vw); margin: 0 auto; padding: clamp(28px, 6vw, 72px) 0;
+  max-width: min(1200px, 92vw); margin: 0 auto;
+  padding: clamp(28px, 6vw, 72px) 0;
 }
 
 /* Skills */
@@ -246,9 +251,9 @@ img {
 .carousel-track{ display: flex; gap: 16px; cursor: grab; user-select:none; will-change: transform; }
 .carousel-track.grabbing{ cursor: grabbing; }
 .car-arrow{
-  position:absolute; top:50%; translate:0 -50%; z-index:2;
-  background: rgba(0,0,0,.45); color:#eaeaea; border:1px solid rgba(255,255,255,.1);
+  position:absolute; top:50%; transform: translateY(-50%); z-index:2;
   width:38px; height:38px; border-radius:50%;
+  background: rgba(0,0,0,.45); color:#eaeaea; border:1px solid rgba(255,255,255,.1);
   display:grid; place-items:center;
 }
 .car-arrow.left{ left: -8px; } .car-arrow.right{ right: -8px; }
