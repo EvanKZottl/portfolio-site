@@ -260,17 +260,21 @@ section{ scroll-margin-top: 72px; }
 .car-arrow:hover{ background: rgba(0,0,0,.6); }
 
 .project-card {
+  flex: 0 0 var(--card-w, clamp(260px, 32vw, 340px));
+  width: var(--card-w);
+  overflow: hidden;
   background: var(--card-green);
   padding: var(--space-3);
   border-radius: var(--radius);
-  min-width: 260px;
   box-shadow: var(--shadow-1);
   transition: transform 0.2s ease, box-shadow 0.2s ease,
     background 0.2s ease;
   display: block;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 .project-card:hover {
-  transform: translateY(-2px);
+  transform: translateZ(0) translateY(-2px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
   background: #166b49;
 }
