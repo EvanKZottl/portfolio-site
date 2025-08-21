@@ -27,6 +27,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
+  font-weight: 400;
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -41,7 +42,9 @@ img {
 }
 
 h2 {
-  color: var(--green-forest);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #fff;
 }
 .container {
   width: min(1100px, 90%);
@@ -92,6 +95,8 @@ section{ scroll-margin-top: 72px; }
     z-index: 1;
   }
   .hero h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
     font-size: clamp(2.5rem, 8vw, 5rem);
     margin: 0;
   }
@@ -322,8 +327,7 @@ section{ scroll-margin-top: 72px; }
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  height: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
 }
 
 .project-card h3 {
