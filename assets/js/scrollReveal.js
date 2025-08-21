@@ -1,5 +1,5 @@
 const reduceMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
+  "(prefers-reduced-motion: reduce)"
 ).matches;
 const elements = document.querySelectorAll(".reveal");
 if (reduceMotion) {
